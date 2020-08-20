@@ -81,17 +81,17 @@ class BufferWrapper(gym.ObservationWrapper):
     
     def reset(self):
         self.buffer = np.zeros_like(self.observation_space.low, dtype=self.dtype)
-        return self.observation(self.env.reser())
+        return self.observation(self.env.reset())
     
     def observation(self, observation):
-        self.bufer[:-1] = self.buffer[1:]
-        self.buffr[-1] = observation
+        self.buffer[:-1] = self.buffer[1:]
+        self.buffer[-1] = observation
         return self.buffer
 
 class ImageToPytorch(gym.ObservationWrapper):
     def __init__(self, env):
         super(ImageToPytorch, self).__init__(env)
-        old_shape = self.observation_space.space.shape
+        old_shape = self.observation_space.shape
         new_shape = (old_shape[-1], old_shape[0], old_shape[1])
         self.observation_space = gym.spaces.Box(low=0.0, high=1.0, shape=new_shape, dtype=np.float32)
 
