@@ -1,5 +1,5 @@
-import wrappers
-import dqn_model
+from lib import wrappers
+from lib import dqn_model
 
 import argparse
 import time
